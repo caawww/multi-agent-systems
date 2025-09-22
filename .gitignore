@@ -1,0 +1,23 @@
+**/.idea/
+**/cmake-build-debug/
+**/__pycache__/
+**/.obsidian/
+**/out/
+**/target/
+**/build/
+**/.ipynb_checkpoints/
+**/.vscode/
+**/_build/
+**/.generated/
+
+*.mp4
+*.avi
+*.tmp
+*.pyc
+*.o
+
+# LaTeX files
+*.aux
+*.log
+*.synctex.gz
+*.out
