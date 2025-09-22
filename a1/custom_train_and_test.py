@@ -98,7 +98,7 @@ def train(ego_object, objects=None, **kw):
         _init_robot(ego_object)
 
     data = _robot_data[ego_object.name]
-    pose = _to_floats(data['pose'])
+    pose = data['pose']
     state = _discretize(pose)
 
     # Epsilon-greedy action
