@@ -1,0 +1,76 @@
+world:
+  size: [ 10.0, 10.0 ]
+
+robot:
+  - kinematics: { name: diff }
+    state: [ 9.0, 5.0, 1.57 ]      # 0° (right)
+    shape: { name: 'circle', radius: 0.2 }
+    color: 'pink'
+    behavior: { name: train }
+    plot: { show_trajectory: false, show_goal: false }
+    unobstructed: true
+
+  - kinematics: { name: diff }
+    state: [ 7.83, 7.83, 2.35 ]    # 45° (top-right)
+    shape: { name: 'circle', radius: 0.2 }
+    color: 'purple'
+    behavior: { name: train }
+    plot: { show_trajectory: false, show_goal: false }
+    unobstructed: true
+
+  - kinematics: { name: diff }
+    state: [ 5.0, 9.0, 3.14 ]      # 90° (top)
+    shape: { name: 'circle', radius: 0.2 }
+    color: 'blue'
+    behavior: { name: train }
+    plot: { show_trajectory: false, show_goal: false }
+    unobstructed: true
+
+  - kinematics: { name: diff }
+    state: [ 2.17, 7.83, -2.35 ]   # 135° (top-left)
+    shape: { name: 'circle', radius: 0.2 }
+    color: 'cyan'
+    behavior: { name: train }
+    plot: { show_trajectory: false, show_goal: false }
+    unobstructed: true
+
+  - kinematics: { name: diff }
+    state: [ 1.0, 5.0, -1.57 ]     # 180° (left)
+    shape: { name: 'circle', radius: 0.2 }
+    color: 'green'
+    behavior: { name: train }
+    plot: { show_trajectory: false, show_goal: false }
+    unobstructed: true
+
+  - kinematics: { name: diff }
+    state: [ 2.17, 2.17, -0.79 ]   # 225° (bottom-left)
+    shape: { name: 'circle', radius: 0.2 }
+    color: 'yellow'
+    behavior: { name: train }
+    plot: { show_trajectory: false, show_goal: false }
+    unobstructed: true
+
+  - kinematics: { name: diff }
+    state: [ 5.0, 1.0, 0.0 ]       # 270° (bottom)
+    shape: { name: 'circle', radius: 0.2 }
+    color: 'orange'
+    behavior: { name: train }
+    plot: { show_trajectory: false, show_goal: false }
+    unobstructed: true
+
+  - kinematics: { name: diff }
+    state: [ 7.83, 2.17, 0.79 ]    # 315° (bottom-right)
+    shape: { name: 'circle', radius: 0.2 }
+    color: 'red'
+    behavior: { name: train }
+    plot: { show_trajectory: false, show_goal: false }
+    unobstructed: true
+
+
+obstacle:
+  - shape:
+      name: 'circle'
+      radius: 4
+    state: [ 5.0, 5.0, 0 ]
+    color: 'lightblue'
+    unobstructed: true   # reference only

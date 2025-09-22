@@ -1,0 +1,21 @@
+world:
+  size: [ 4.0, 4.0 ]
+
+robot:
+  - kinematics: { name: diff }
+    state: [ 3.5, 2.0, 1.57 ]   # start on circle
+    shape: { name: 'circle', radius: 0.15 }
+    color: 'pink'
+    behavior:
+      name: train
+    plot:
+      show_trajectory: false
+      show_goal: false
+
+obstacle:
+  - shape:
+      name: 'circle'
+      radius: 1.5
+    state: [ 2.0, 2.0, 0 ]
+    color: 'lightblue'
+    unobstructed: true   # reference only
