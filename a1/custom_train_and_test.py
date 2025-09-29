@@ -25,7 +25,7 @@ ACTIONS = [
 
 # Global robot data
 _robot_data = {}  # ego_name -> dict
-_Q = {}  # (x,y,th) state -> q-values
+_Q = {}  # state -> q-values
 
 
 def _discretize(pose):
@@ -120,8 +120,8 @@ def train(ego_object, objects=None, **kw):
     _ensure(state)
     _ensure(new_state)
     best_next = np.max(_Q[new_state])
-    td_target = reward + GAMMA * best_next
-    _Q[state][a] += ALPHA * (td_target - _Q[state][a])
+    target = reward + GAMMA * best_next
+    _Q[state][a] += ALPHA * (target - _Q[state][a])
 
     # Update robot state
     data['pose'] = new_pose
