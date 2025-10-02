@@ -1,0 +1,350 @@
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes=  1, reward=  -36.00
+[test] robot_1 finished, train episodes=  1, reward=  -36.96
+[test] robot_2 finished, train episodes=  1, reward=  -36.84
+[test] robot_3 finished, train episodes=  1, reward=  -36.96
+[test] robot_4 finished, train episodes=  1, reward=  -36.77
+[test] robot_5 finished, train episodes=  1, reward=  -34.69
+[test] robot_6 finished, train episodes=  1, reward=  -34.62
+[test] robot_7 finished, train episodes=  1, reward=  -35.06
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes=  2, reward=  -65.76
+[test] robot_1 finished, train episodes=  2, reward=-3215.95
+[test] robot_2 finished, train episodes=  2, reward=  -45.36
+[test] robot_3 finished, train episodes=  2, reward=-3198.28
+[test] robot_4 finished, train episodes=  2, reward=-1613.67
+[test] robot_5 finished, train episodes=  2, reward=  -36.89
+[test] robot_6 finished, train episodes=  2, reward=-1586.20
+[test] robot_7 finished, train episodes=  2, reward=  -51.62
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes=  3, reward=-1630.87
+[test] robot_1 finished, train episodes=  3, reward=-1624.04
+[test] robot_2 finished, train episodes=  3, reward= -907.04
+[test] robot_3 finished, train episodes=  3, reward=-1075.99
+[test] robot_4 finished, train episodes=  3, reward=-2000.01
+[test] robot_5 finished, train episodes=  3, reward=-1634.42
+[test] robot_6 finished, train episodes=  3, reward=-1426.65
+[test] robot_7 finished, train episodes=  3, reward=-2347.50
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes=  4, reward=-2945.65
+[test] robot_1 finished, train episodes=  4, reward=-2822.74
+[test] robot_2 finished, train episodes=  4, reward=-3087.31
+[test] robot_3 finished, train episodes=  4, reward=-2807.25
+[test] robot_4 finished, train episodes=  4, reward=-1211.08
+[test] robot_5 finished, train episodes=  4, reward=-2613.77
+[test] robot_6 finished, train episodes=  4, reward=-2040.47
+[test] robot_7 finished, train episodes=  4, reward=-1658.55
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes=  5, reward=  -50.45
+[test] robot_1 finished, train episodes=  5, reward=  -50.49
+[test] robot_2 finished, train episodes=  5, reward=  -53.08
+[test] robot_3 finished, train episodes=  5, reward=  -50.63
+[test] robot_4 finished, train episodes=  5, reward=  -49.24
+[test] robot_5 finished, train episodes=  5, reward=  -49.51
+[test] robot_6 finished, train episodes=  5, reward=  -48.90
+[test] robot_7 finished, train episodes=  5, reward=  -56.13
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes=  6, reward=-4453.35
+[test] robot_1 finished, train episodes=  6, reward=  -52.89
+[test] robot_2 finished, train episodes=  6, reward=-1160.12
+[test] robot_3 finished, train episodes=  6, reward=  -53.12
+[test] robot_4 finished, train episodes=  6, reward=  -53.67
+[test] robot_5 finished, train episodes=  6, reward=  -53.85
+[test] robot_6 finished, train episodes=  6, reward=  -53.63
+[test] robot_7 finished, train episodes=  6, reward=  -54.12
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes=  7, reward=-5198.36
+[test] robot_1 finished, train episodes=  7, reward=-4628.43
+[test] robot_2 finished, train episodes=  7, reward=-1016.71
+[test] robot_3 finished, train episodes=  7, reward=-3925.30
+[test] robot_4 finished, train episodes=  7, reward=-5102.97
+[test] robot_5 finished, train episodes=  7, reward=-5599.16
+[test] robot_6 finished, train episodes=  7, reward=-5104.08
+[test] robot_7 finished, train episodes=  7, reward=-3924.43
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes=  8, reward=  -11.73
+[test] robot_1 finished, train episodes=  8, reward=  -11.64
+[test] robot_2 finished, train episodes=  8, reward=  -11.78
+[test] robot_3 finished, train episodes=  8, reward=  -11.62
+[test] robot_4 finished, train episodes=  8, reward=  -11.85
+[test] robot_5 finished, train episodes=  8, reward=  -11.78
+[test] robot_6 finished, train episodes=  8, reward=  -11.88
+[test] robot_7 finished, train episodes=  8, reward=  -11.33
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes=  9, reward=  -11.73
+[test] robot_1 finished, train episodes=  9, reward=  -11.64
+[test] robot_2 finished, train episodes=  9, reward=  -11.78
+[test] robot_3 finished, train episodes=  9, reward=  -11.62
+[test] robot_4 finished, train episodes=  9, reward=  -11.85
+[test] robot_5 finished, train episodes=  9, reward=  -11.78
+[test] robot_6 finished, train episodes=  9, reward=  -11.88
+[test] robot_7 finished, train episodes=  9, reward=  -11.33
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 10, reward=  -11.73
+[test] robot_1 finished, train episodes= 10, reward=  -11.64
+[test] robot_2 finished, train episodes= 10, reward=  -11.78
+[test] robot_3 finished, train episodes= 10, reward=  -11.62
+[test] robot_4 finished, train episodes= 10, reward=  -11.85
+[test] robot_5 finished, train episodes= 10, reward=  -11.78
+[test] robot_6 finished, train episodes= 10, reward=  -11.88
+[test] robot_7 finished, train episodes= 10, reward=  -11.33
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 11, reward=  -37.12
+[test] robot_1 finished, train episodes= 11, reward=  -36.69
+[test] robot_2 finished, train episodes= 11, reward=  -37.77
+[test] robot_3 finished, train episodes= 11, reward=  -37.51
+[test] robot_4 finished, train episodes= 11, reward=  -37.28
+[test] robot_5 finished, train episodes= 11, reward=  -36.44
+[test] robot_6 finished, train episodes= 11, reward=  -37.26
+[test] robot_7 finished, train episodes= 11, reward=  -37.17
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 12, reward=  -28.18
+[test] robot_1 finished, train episodes= 12, reward=  -27.45
+[test] robot_2 finished, train episodes= 12, reward=  -84.70
+[test] robot_3 finished, train episodes= 12, reward=  -27.33
+[test] robot_4 finished, train episodes= 12, reward=  -84.60
+[test] robot_5 finished, train episodes= 12, reward=  -30.01
+[test] robot_6 finished, train episodes= 12, reward=  -85.57
+[test] robot_7 finished, train episodes= 12, reward=  -33.45
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 13, reward=  -12.76
+[test] robot_1 finished, train episodes= 13, reward=  -11.96
+[test] robot_2 finished, train episodes= 13, reward=  -13.10
+[test] robot_3 finished, train episodes= 13, reward=  -11.93
+[test] robot_4 finished, train episodes= 13, reward=  -12.35
+[test] robot_5 finished, train episodes= 13, reward=  -13.15
+[test] robot_6 finished, train episodes= 13, reward=  -12.69
+[test] robot_7 finished, train episodes= 13, reward=  -11.97
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 14, reward=  -11.73
+[test] robot_1 finished, train episodes= 14, reward=  -11.64
+[test] robot_2 finished, train episodes= 14, reward=  -11.78
+[test] robot_3 finished, train episodes= 14, reward=  -11.62
+[test] robot_4 finished, train episodes= 14, reward=  -11.85
+[test] robot_5 finished, train episodes= 14, reward=  -11.78
+[test] robot_6 finished, train episodes= 14, reward=  -11.88
+[test] robot_7 finished, train episodes= 14, reward=  -11.33
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 15, reward=  -29.95
+[test] robot_1 finished, train episodes= 15, reward=  -31.65
+[test] robot_2 finished, train episodes= 15, reward=  -28.85
+[test] robot_3 finished, train episodes= 15, reward=  -31.61
+[test] robot_4 finished, train episodes= 15, reward=  -28.45
+[test] robot_5 finished, train episodes= 15, reward=  -31.10
+[test] robot_6 finished, train episodes= 15, reward=  -30.54
+[test] robot_7 finished, train episodes= 15, reward=  -31.67
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 16, reward=  -18.43
+[test] robot_1 finished, train episodes= 16, reward=  -18.98
+[test] robot_2 finished, train episodes= 16, reward=  -18.61
+[test] robot_3 finished, train episodes= 16, reward=  -19.09
+[test] robot_4 finished, train episodes= 16, reward=  -18.93
+[test] robot_5 finished, train episodes= 16, reward=  -18.78
+[test] robot_6 finished, train episodes= 16, reward=  -19.05
+[test] robot_7 finished, train episodes= 16, reward=  -18.60
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 17, reward=  -23.29
+[test] robot_1 finished, train episodes= 17, reward=  -23.34
+[test] robot_2 finished, train episodes= 17, reward=  -23.27
+[test] robot_3 finished, train episodes= 17, reward=  -23.25
+[test] robot_4 finished, train episodes= 17, reward=  -23.32
+[test] robot_5 finished, train episodes= 17, reward=  -23.16
+[test] robot_6 finished, train episodes= 17, reward=  -23.19
+[test] robot_7 finished, train episodes= 17, reward=  -23.21
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 18, reward=  -23.59
+[test] robot_1 finished, train episodes= 18, reward=  -23.69
+[test] robot_2 finished, train episodes= 18, reward=  -23.83
+[test] robot_3 finished, train episodes= 18, reward=  -23.92
+[test] robot_4 finished, train episodes= 18, reward=  -24.08
+[test] robot_5 finished, train episodes= 18, reward=  -23.54
+[test] robot_6 finished, train episodes= 18, reward=  -23.49
+[test] robot_7 finished, train episodes= 18, reward=  -23.66
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 19, reward=  -29.11
+[test] robot_1 finished, train episodes= 19, reward=  -28.96
+[test] robot_2 finished, train episodes= 19, reward=  -29.27
+[test] robot_3 finished, train episodes= 19, reward=  -28.83
+[test] robot_4 finished, train episodes= 19, reward=  -29.51
+[test] robot_5 finished, train episodes= 19, reward=  -28.76
+[test] robot_6 finished, train episodes= 19, reward=  -28.73
+[test] robot_7 finished, train episodes= 19, reward=  -29.05
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 20, reward=  -11.73
+[test] robot_1 finished, train episodes= 20, reward=  -11.64
+[test] robot_2 finished, train episodes= 20, reward=  -11.78
+[test] robot_3 finished, train episodes= 20, reward=  -11.62
+[test] robot_4 finished, train episodes= 20, reward=  -11.85
+[test] robot_5 finished, train episodes= 20, reward=  -11.78
+[test] robot_6 finished, train episodes= 20, reward=  -11.88
+[test] robot_7 finished, train episodes= 20, reward=  -11.33
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 21, reward=  -25.30
+[test] robot_1 finished, train episodes= 21, reward=  -25.11
+[test] robot_2 finished, train episodes= 21, reward=  -24.78
+[test] robot_3 finished, train episodes= 21, reward=  -25.01
+[test] robot_4 finished, train episodes= 21, reward=  -24.95
+[test] robot_5 finished, train episodes= 21, reward=  -25.14
+[test] robot_6 finished, train episodes= 21, reward=  -25.31
+[test] robot_7 finished, train episodes= 21, reward=  -25.08
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 22, reward=  -20.88
+[test] robot_1 finished, train episodes= 22, reward=  -21.28
+[test] robot_2 finished, train episodes= 22, reward=  -21.13
+[test] robot_3 finished, train episodes= 22, reward=  -21.87
+[test] robot_4 finished, train episodes= 22, reward=  -21.63
+[test] robot_5 finished, train episodes= 22, reward=  -21.39
+[test] robot_6 finished, train episodes= 22, reward=  -21.11
+[test] robot_7 finished, train episodes= 22, reward=  -21.31
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 23, reward=  -21.46
+[test] robot_1 finished, train episodes= 23, reward=  -21.68
+[test] robot_2 finished, train episodes= 23, reward=  -21.26
+[test] robot_3 finished, train episodes= 23, reward=  -21.64
+[test] robot_4 finished, train episodes= 23, reward=  -21.80
+[test] robot_5 finished, train episodes= 23, reward=  -21.48
+[test] robot_6 finished, train episodes= 23, reward=  -21.47
+[test] robot_7 finished, train episodes= 23, reward=  -21.78
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 24, reward=  -10.86
+[test] robot_1 finished, train episodes= 24, reward=  -11.51
+[test] robot_2 finished, train episodes= 24, reward=  -11.45
+[test] robot_3 finished, train episodes= 24, reward=  -11.48
+[test] robot_4 finished, train episodes= 24, reward=  -11.67
+[test] robot_5 finished, train episodes= 24, reward=  -10.58
+[test] robot_6 finished, train episodes= 24, reward=  -11.12
+[test] robot_7 finished, train episodes= 24, reward=  -10.73
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_train' has been initialized and started.
+2025-10-02 13:08 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:08 | INFO     | The simulated environment has ended. Total simulation time: 20.0 seconds.
+2025-10-02 13:08 | INFO     | Simulation environment 'mas_circle_test' has been initialized and started.
+[test] robot_0 finished, train episodes= 25, reward=  -11.51
+[test] robot_1 finished, train episodes= 25, reward=  -11.55
+[test] robot_2 finished, train episodes= 25, reward=  -11.46
+[test] robot_3 finished, train episodes= 25, reward=  -11.56
+[test] robot_4 finished, train episodes= 25, reward=  -11.45
+[test] robot_5 finished, train episodes= 25, reward=  -11.46
+[test] robot_6 finished, train episodes= 25, reward=  -11.64
+[test] robot_7 finished, train episodes= 25, reward=  -11.44
+2025-10-02 13:09 | INFO     | Figure will be closed within 0.01 seconds.
+2025-10-02 13:09 | INFO     | The simulated environment has ended. Total simulation time: 50.1 seconds.

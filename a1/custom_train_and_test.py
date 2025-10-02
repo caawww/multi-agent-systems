@@ -158,12 +158,15 @@ def test(ego_object, objects=None, **kw):
 
     data = _robot_data[ego_object.name]
     if data['steps'] >= TESTING_STEPS:
-        if data['steps'] == TESTING_STEPS:
-            print(
-                f"[test] {ego_object.name} finished, "
-                f"train episodes={data['episodes']:3}, "
-                f"reward={data['overall_reward']:8.2f}"
-            )
+        print(
+            f"[test] {ego_object.name} finished, "
+            f"train episodes={data['episodes']:3}, "
+            f"reward={data['overall_reward']:8.2f}"
+        )
+        data['steps'] = 0
+        ego_object.set_state(data['init_pose'])
+        data['pose'] = list(data['init_pose'])
+        data['overall_reward'] = 0
 
         return np.array([[0.0], [0.0]], dtype=float)
 
