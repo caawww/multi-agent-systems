@@ -14,14 +14,13 @@ EPS_DECAY = 0.995
 
 # Actions: forward, turn left, turn right
 ACTIONS = [
-    # (0.0, 0.0),  # stay
-    # (0.0, 0.3),  # turn left
-    # (0.0, -0.3),  # turn right
-
     (0.05, 0.0),  # forward
     (0.05, 0.3),  # turn left
     (0.05, -0.3),  # turn right
 ]
+
+TRAINING_STEPS = 200
+TESTING_STEPS = 500
 
 # Global robot data
 _robot_data = {}  # ego_name -> dict
@@ -52,18 +51,22 @@ def _ensure(s):
         _Q[s] = np.zeros(len(ACTIONS), dtype=float)
 
 
-def _reward(pose):
+def _reward(pose, dist=True, head=True):
     """Reward is based on distance to the circle outline."""
     x, y, th = pose
-
-    # Distance error to circle outline
     vec = np.array([x, y]) - CENTER
-    dist_to_center = np.linalg.norm(vec)
-    dist_error = abs(dist_to_center - RADIUS)
 
-    # Heading alignment with tangent
-    tangent = np.arctan2(vec[1], vec[0]) + np.pi / 2
-    heading_err = abs(((th - tangent + np.pi) % (2 * np.pi)) - np.pi)
+    dist_error = 0
+    if dist:
+        # Distance error to circle outline
+        dist_to_center = np.linalg.norm(vec)
+        dist_error = abs(dist_to_center - RADIUS)
+
+    heading_err = 0
+    if head:
+        # Heading alignment with tangent
+        tangent = np.arctan2(vec[1], vec[0]) + np.pi / 2
+        heading_err = abs(((th - tangent + np.pi) % (2 * np.pi)) - np.pi)
 
     # Final reward (negative because we want to minimize error)
     return - (dist_error + 0.5 * heading_err)
@@ -129,17 +132,18 @@ def train(ego_object, objects=None, **kw):
     ego_object.set_state(new_pose)
 
     # Episode management: reset every `n` steps
-    if data['steps'] >= 200:
+    if data['steps'] >= TRAINING_STEPS:
         data['steps'] = 0
         data['episodes'] += 1
         data['eps'] = max(EPS_MIN, data['eps'] * EPS_DECAY)
         ego_object.set_state(data['init_pose'])
         data['pose'] = list(data['init_pose'])
 
-        print(
-            f"[train] {ego_object.name} finished episode={data['episodes']:3}, "
-            f"eps={data['eps']:6.3f}, "
-            f"reward={data['overall_reward']:5.0f}")
+        # print(
+        #     f"[train] {ego_object.name} finished episode={data['episodes']:3}, "
+        #     f"eps={data['eps']:6.3f}, "
+        #     f"reward={data['overall_reward']:5.0f}"
+        # )
 
         data['overall_reward'] = 0
 
@@ -153,6 +157,16 @@ def test(ego_object, objects=None, **kw):
         _init_robot(ego_object)
 
     data = _robot_data[ego_object.name]
+    if data['steps'] >= TESTING_STEPS:
+        if data['steps'] == TESTING_STEPS:
+            print(
+                f"[test] {ego_object.name} finished, "
+                f"train episodes={data['episodes']:3}, "
+                f"reward={data['overall_reward']:8.2f}"
+            )
+
+        return np.array([[0.0], [0.0]], dtype=float)
+
     pose = data['pose']
     state = _discretize(pose)
 
@@ -162,5 +176,8 @@ def test(ego_object, objects=None, **kw):
 
     data['pose'] = new_pose
     ego_object.set_state(new_pose)
+
+    data['overall_reward'] += _reward(new_pose, head=False)
+    data['steps'] += 1
 
     return np.array([[0.0], [0.0]], dtype=float)
