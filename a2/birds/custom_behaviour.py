@@ -7,12 +7,15 @@ from numpy import ndarray
 from scipy.spatial.distance import pdist, squareform
 
 # --- Parameters ---
-MAX_SPEED: float = 0.15
+MAX_SPEED: float = 0.3
 ANGULAR_GAIN: float = 2.0
 COHESION_WEIGHT: float = 0.6
 SEPARATION_WEIGHT: float = 1.2
 ALIGNMENT_WEIGHT: float = 0.4
-DESIRED_DISTANCE: float = 1.0
+DESIRED_DISTANCE: float = 0.75
+STOPPING_DISTANCE: float = 1.0
+LIDAR_OFFSET: float = 0.05
+GOAL_POS: dict[str, float] = {'x': 5, 'y': 5}
 
 
 def _to_floats(pos: ndarray) -> list[float]:
@@ -120,64 +123,55 @@ def _estimate_leader_from_lidar(lidar_points: ndarray) -> Optional[ndarray]:
     return centroid
 
 
-# --- Leader behavior ---
-@register_behavior('diff', 'custom_behaviour')
-def move(ego_object, objects=None, **kw) -> ndarray:
-    # --- Leader (rectangle) ---
-    if ego_object.name == 'robot_0':
-        x: float
-        y: float
-        _: float
-        x, y, _ = _to_floats(ego_object.state)
-        return np.array(
-            [
-                [MAX_SPEED * random.random() if y < 5 else 0],
-                [0.5 - random.random()],
-            ],
-            dtype=float
-        )
-
-    # --- Follower (circle) ---
-    x: float
-    y: float
-    th: float
-    x, y, th = _to_floats(ego_object.state)
-    pos: ndarray = np.array([x, y])
-    heading: ndarray = np.array([np.cos(th), np.sin(th)])
-    lidar = ego_object.lidar
-
+def _compute_lidar_points(pos, th, lidar) -> ndarray:
+    """Compute lidar points."""
     # Build neighbor list
-    lidar_points: list[list[float]] = []
     scan_data: dict = lidar.get_scan()
     ranges: ndarray = np.array(scan_data["ranges"])
     angles: ndarray = np.linspace(lidar.angle_min, lidar.angle_max, len(ranges))
 
+    lidar_points: list[list[float]] = []
     for r, ang in zip(ranges, angles):
-        if 0.05 < r < lidar.range_max - 0.05:
+        if LIDAR_OFFSET < r < lidar.range_max - LIDAR_OFFSET:
             lidar_points.append([
-                x + r * np.cos(ang + th),
-                y + r * np.sin(ang + th)
+                pos[0] + r * np.cos(ang + th),
+                pos[1] + r * np.sin(ang + th)
             ])
 
-    lidar_points: ndarray = np.array(lidar_points)
+    return np.array(lidar_points)
+
+
+# --- Leader behavior ---
+@register_behavior('diff', 'custom_behaviour')
+def move(ego_object, objects=None, **kw) -> ndarray:
+    x, y, th = _to_floats(ego_object.state)
+    pos: ndarray = np.array([x, y])
+    lidar_points: ndarray = _compute_lidar_points(pos, th, ego_object.lidar)
 
     # Estimate leader
-    leader_est: Optional[ndarray] = _estimate_leader_from_lidar(lidar_points)
-    if leader_est is not None:
-        print(f'{ego_object.name} -> [{leader_est[0]:.2} {leader_est[1]:.2}]')
+    leader_est: Optional[ndarray] = (
+        np.array([GOAL_POS['x'], GOAL_POS['y']])
+        if ego_object.name == 'robot_0'
+        else _estimate_leader_from_lidar(lidar_points)
+    )
 
     # Compute control (leader if seen, otherwise flock)
     control_vec: ndarray = _boid_control(pos, lidar_points, leader_pos=leader_est)
 
     desired_yaw: float = float(np.arctan2(control_vec[1], control_vec[0]))
+
+    linear_velocity = (
+        MAX_SPEED
+        if leader_est is None
+        else MAX_SPEED * max(0, min(1, np.linalg.norm(leader_est - pos) - STOPPING_DISTANCE))
+    )
     angular_velocity: float = ANGULAR_GAIN * np.arctan2(
         np.sin(desired_yaw - th), np.cos(desired_yaw - th)
     )
 
     return np.array(
         [
-            [MAX_SPEED],
+            [linear_velocity],
             [min(max(angular_velocity, -1), 1)]
-        ],
-        dtype=float
+        ], dtype=float
     )
