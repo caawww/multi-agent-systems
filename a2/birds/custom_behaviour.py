@@ -11,11 +11,11 @@ MAX_SPEED: float = 0.3
 ANGULAR_GAIN: float = 2.0
 COHESION_WEIGHT: float = 0.6
 SEPARATION_WEIGHT: float = 1.2
-ALIGNMENT_WEIGHT: float = 0.4
+ALIGNMENT_WEIGHT: float = 0.2
 DESIRED_DISTANCE: float = 0.75
 STOPPING_DISTANCE: float = 1.0
 LIDAR_OFFSET: float = 0.05
-GOAL_POS: dict[str, float] = {'x': 5, 'y': 5}
+GOAL_POS: dict[str, float] = {'x': 5, 'y': 10}
 
 
 def _to_floats(pos: ndarray) -> list[float]:
@@ -23,39 +23,42 @@ def _to_floats(pos: ndarray) -> list[float]:
     return [float(p) for p in pos]
 
 
-def _boid_control(pos: ndarray, lidar_points: ndarray, leader_pos: Optional[ndarray] = None) -> ndarray:
-    """Boid control with optional leader influence."""
+def _boid_control(pos: np.ndarray, lidar_points: np.ndarray, leader_pos: Optional[np.ndarray] = None) -> np.ndarray:
+    """Boid control using LiDAR position and velocity data."""
 
-    # --- Cohesion: move toward leader or neighbor centroid ---
-    cohesion: ndarray = np.zeros(2)
-    if leader_pos is not None:
-        vec_to_leader: ndarray = leader_pos - pos
-        cohesion = vec_to_leader / (np.linalg.norm(vec_to_leader) + 1e-6)
+    cohesion = np.zeros(2)
+    separation = np.zeros(2)
+    alignment = np.zeros(2)
 
-    elif len(lidar_points) > 0:
-        centroid: ndarray = np.mean([npos for npos in lidar_points], axis=0)
-        vec_to_group: ndarray = centroid - pos
-        cohesion = vec_to_group / (np.linalg.norm(vec_to_group) + 1e-6)
+    if lidar_points.size > 0:
+        positions = lidar_points[:, :2]  # (x, y)
+        velocities = lidar_points[:, 2:]  # (vx, vy)
 
-    # --- Separation: avoid nearby objects ---
-    separation: ndarray = np.zeros(2)
-    for npos in lidar_points:
-        diff: ndarray = pos - npos
-        d = np.linalg.norm(diff)
-        if 1e-6 < d < DESIRED_DISTANCE:
-            separation += diff / d ** 2
+        # --- Cohesion ---
+        if leader_pos is not None:
+            vec_to_leader = leader_pos - pos
+            cohesion = vec_to_leader / (np.linalg.norm(vec_to_leader) + 1e-6)
 
-    # # --- Alignment: align heading with neighbors ---
-    # alignment: ndarray = np.zeros(2)
-    # if len(lidar_points) > 0:
-    #     neighbor_dirs: list = [nvel for _, nvel in lidar_points]
-    #     mean_dir: ndarray = np.mean(neighbor_dirs, axis=0)
-    #     alignment = mean_dir / (np.linalg.norm(mean_dir) + 1e-6)
+        else:
+            centroid = np.mean(positions, axis=0)
+            vec_to_group = centroid - pos
+            cohesion = vec_to_group / (np.linalg.norm(vec_to_group) + 1e-6)
 
-    control: ndarray = (
-            COHESION_WEIGHT * cohesion
-            + SEPARATION_WEIGHT * separation
-        # + ALIGNMENT_WEIGHT * alignment
+        # --- Separation ---
+        for npos in positions:
+            diff = pos - npos
+            d = np.linalg.norm(diff)
+            if 1e-6 < d < DESIRED_DISTANCE:
+                separation += diff / d ** 2
+
+        # --- Alignment ---
+        mean_vel = np.mean(velocities, axis=0)
+        alignment = mean_vel / (np.linalg.norm(mean_vel) + 1e-6)
+
+    control = (
+            COHESION_WEIGHT * cohesion +
+            SEPARATION_WEIGHT * separation +
+            ALIGNMENT_WEIGHT * alignment
     )
 
     return control / (np.linalg.norm(control) + 1e-6)
@@ -96,7 +99,7 @@ def _estimate_leader_from_lidar(lidar_points: ndarray) -> Optional[ndarray]:
     if len(lidar_points) == 0:
         return None
 
-    clusters: list[ndarray] = _cluster_points(lidar_points)
+    clusters: list[ndarray] = _cluster_points(lidar_points[:, :2])
 
     leader_cluster: Optional[ndarray] = None
     max_box_area: float = 0
@@ -129,14 +132,20 @@ def _compute_lidar_points(pos, th, lidar) -> ndarray:
     scan_data: dict = lidar.get_scan()
     ranges: ndarray = np.array(scan_data["ranges"])
     angles: ndarray = np.linspace(lidar.angle_min, lidar.angle_max, len(ranges))
+    velocities: ndarray = np.array(scan_data["velocity"])
 
     lidar_points: list[list[float]] = []
-    for r, ang in zip(ranges, angles):
+    for r, ang, vx, vy in zip(ranges, angles, velocities[0], velocities[1]):
         if LIDAR_OFFSET < r < lidar.range_max - LIDAR_OFFSET:
-            lidar_points.append([
-                pos[0] + r * np.cos(ang + th),
-                pos[1] + r * np.sin(ang + th)
-            ])
+            # Compute position in world frame
+            x = pos[0] + r * np.cos(ang + th)
+            y = pos[1] + r * np.sin(ang + th)
+
+            # Rotate local velocity (vx, vy) into world frame
+            wx = vx * np.cos(th) - vy * np.sin(th)
+            wy = vx * np.sin(th) + vy * np.cos(th)
+
+            lidar_points.append([x, y, wx, wy])
 
     return np.array(lidar_points)
 
