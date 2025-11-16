@@ -12,9 +12,6 @@ SEPARATION_WEIGHT = 1.3
 DESIRED_DISTANCE = 0.75
 LIDAR_OFFSET = 0.05
 
-# Leader’s goal (kept for compatibility with main.py, but not used for motion)
-GOAL_POS = {'x': 5, 'y': 5}
-
 # --- Pheromone Parameters ---
 PHERO_CELL_SIZE = 0.1
 PHERO_DECAY = 0.015
@@ -167,12 +164,8 @@ def reset_efficiency():
 def print_final_efficiency():
     """
     Compute average distance between each follower and the leader over the run.
-
-    - Leader logs its own position in _LEADER_TRAJECTORY.
-    - Each follower logs only its own ego position in _FOLLOWER_TRAJECTORIES.
-    - Steps are aligned by index: index k is timestep k.
-    - We use steps up to the minimum length over leader + followers.
     """
+    
     if not _LEADER_TRAJECTORY:
         print("[EFF] No leader data recorded.")
         return None
