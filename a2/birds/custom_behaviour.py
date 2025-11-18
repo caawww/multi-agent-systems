@@ -2,6 +2,7 @@ import random
 from typing import Optional
 
 import numpy as np
+import math
 from irsim.lib import register_behavior
 from numpy import ndarray
 from scipy.spatial.distance import pdist, squareform
@@ -16,6 +17,11 @@ DESIRED_DISTANCE: float = 0.75
 STOPPING_DISTANCE: float = 1.0
 LIDAR_OFFSET: float = 0.05
 GOAL_POS: dict[str, float] = {'x': 5, 'y': 10}
+
+INTERACTIVE = False
+FOLLOWER_DIST = list()
+LEADER_NAME = 'robot_0'
+_ROBOT_POS = {}
 
 
 def _to_floats(pos: ndarray) -> list[float]:
@@ -150,9 +156,44 @@ def _compute_lidar_points(pos, th, lidar) -> ndarray:
     return np.array(lidar_points)
 
 
+def _update_robot(ego_object):
+    x, y, th = _to_floats(ego_object.state)
+    _ROBOT_POS[ego_object.name] = [x, y, th]
+
+
+def distance(robot_name):
+    x1, y1, _ = _ROBOT_POS[LEADER_NAME]
+    x2, y2, _ = _ROBOT_POS[robot_name]
+    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+
+
+def print_final_efficiency():
+    num_followers = len(_ROBOT_POS) - 1
+    median = sorted(FOLLOWER_DIST)[len(FOLLOWER_DIST) // 2] \
+        if len(FOLLOWER_DIST) % 2 \
+        else (sorted(FOLLOWER_DIST)[len(FOLLOWER_DIST) // 2 - 1] + sorted(FOLLOWER_DIST)[len(FOLLOWER_DIST) // 2]) / 2
+
+    print("\n======================================")
+    print(" FINAL EFFICIENCY RESULTS")
+    print(f" Followers:                       {num_followers}")
+    print(f" Steps used (aligned):            {len(FOLLOWER_DIST) / num_followers}")
+    print(f" Total leader–follower pairs:     {len(FOLLOWER_DIST)}")
+    print(f" Mean distance from leader:       {sum(FOLLOWER_DIST) / len(FOLLOWER_DIST):.3f}")
+    print(f" Median distance from leader:     {median:.3f}")
+    print(f" Min-Max distance from leader:    {min(FOLLOWER_DIST):.3f} - {max(FOLLOWER_DIST):.3f}")
+    print("======================================\n")
+
+    FOLLOWER_DIST.clear()
+
+
 # --- Leader behavior ---
 @register_behavior('diff', 'custom_behaviour')
 def move(ego_object, objects=None, **kw) -> ndarray:
+    _update_robot(ego_object)
+
+    if ego_object.name != LEADER_NAME:
+        FOLLOWER_DIST.append(distance(ego_object.name))
+
     x, y, th = _to_floats(ego_object.state)
     pos: ndarray = np.array([x, y])
     lidar_points: ndarray = _compute_lidar_points(pos, th, ego_object.lidar)
@@ -180,7 +221,7 @@ def move(ego_object, objects=None, **kw) -> ndarray:
 
     return np.array(
         [
-            [linear_velocity],
+            [linear_velocity if ego_object.name != LEADER_NAME else linear_velocity * 0.75],
             [min(max(angular_velocity, -1), 1)]
         ], dtype=float
     )
