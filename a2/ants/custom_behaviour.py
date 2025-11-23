@@ -1,6 +1,7 @@
-import numpy as np
-import matplotlib.pyplot as plt
 from typing import Optional
+
+import matplotlib.pyplot as plt
+import numpy as np
 from irsim.lib import register_behavior
 from numpy import ndarray
 
@@ -29,11 +30,12 @@ PHERO_WORLD_MAX = (10.0, 10.0)
 
 # Visualization params
 # update 5x less often than before
-VIS_UPDATE_FREQ = 5   # update every N leader calls
+VIS_UPDATE_FREQ = 5  # update every N leader calls
 _FIG = None
 _AX = None
 _IM = None
 _vis_counter = 0
+
 
 # -----------------------------------------------------
 # Utility
@@ -137,7 +139,7 @@ class PheromoneField:
         """Real-time heatmap of pheromone grid (non-blocking)."""
         global _FIG, _AX, _IM
         extent = (float(self.world_min[0]), float(self.world_max[0]),
-                float(self.world_min[1]), float(self.world_max[1]))
+                  float(self.world_min[1]), float(self.world_max[1]))
 
         # auto-scale vmax if not provided (use 99th percentile of nonzero values)
         if vmax is None:
@@ -152,7 +154,7 @@ class PheromoneField:
             _FIG, _AX = plt.subplots(figsize=(6, 6))
             # do NOT flip the grid; use origin='lower' so y increases upward
             _IM = _AX.imshow(self.grid, origin='lower', extent=extent,
-                            cmap=cmap, interpolation='bilinear', vmin=vmin, vmax=vmax)
+                             cmap=cmap, interpolation='bilinear', vmin=vmin, vmax=vmax)
             _AX.set_title('Pheromone field')
             _AX.set_xlabel('x')
             _AX.set_ylabel('y')
@@ -164,6 +166,7 @@ class PheromoneField:
             _IM.set_clim(vmin if vmin is not None else 0.0, vmax)
             _FIG.canvas.draw_idle()
         plt.pause(0.001)
+
 
 # Global pheromone field (use world bounds that match your sim)
 _PHERO = PheromoneField(PHERO_WORLD_MIN, PHERO_WORLD_MAX, PHERO_CELL_SIZE)

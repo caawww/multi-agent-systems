@@ -1,8 +1,7 @@
-import random
+import math
 from typing import Optional
 
 import numpy as np
-import math
 from irsim.lib import register_behavior
 from numpy import ndarray
 from scipy.spatial.distance import pdist, squareform
@@ -18,7 +17,7 @@ STOPPING_DISTANCE: float = 1.0
 LIDAR_OFFSET: float = 0.05
 GOAL_POS: dict[str, float] = {'x': 5, 'y': 10}
 
-INTERACTIVE = False
+INTERACTIVE = True
 FOLLOWER_DIST = list()
 LEADER_NAME = 'robot_0'
 _ROBOT_POS = {}

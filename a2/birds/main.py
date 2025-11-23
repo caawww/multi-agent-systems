@@ -1,4 +1,5 @@
 import irsim
+
 from custom_behaviour import GOAL_POS, INTERACTIVE, print_final_efficiency
 
 if INTERACTIVE:

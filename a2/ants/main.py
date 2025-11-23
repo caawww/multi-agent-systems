@@ -1,4 +1,5 @@
 import irsim
+
 from custom_behaviour import GOAL_POS, _PHERO
 
 # TRAIN
@@ -15,8 +16,7 @@ for t in range(180_0):
     env.step()
 
     # update pheromone visualization less often (every UPDATE_EVERY steps) 
-    if (t % UPDATE_EVERY) == 0:_PHERO.render(cmap='hot')
-        
+    if (t % UPDATE_EVERY) == 0: _PHERO.render(cmap='hot')
 
     env.render(0.025)
 
