@@ -1,13 +1,13 @@
 import yaml
 
 
-def make_robot(state, level=1, radius=0.2):
+def make_robot(state, level=1, radius=0.2, behaviour="train"):
     return {
         "kinematics": {"name": "diff"},
         "state": [state[0] + 0.5, state[1] + 0.5, state[2]],
         "shape": {"name": "circle", "radius": radius},
         "level": level,
-        "behavior": {"name": "train"},
+        "behavior": {"name": f"{behaviour}"},
         "plot": {
             "show_trajectory": False,
             "show_goal": False
@@ -36,6 +36,7 @@ def generate_yaml(
         world_size=(10, 10),
         robots=None,
         apples=None,
+        behaviour="train",
         output_file="grid.yaml"
 ):
     data = {
@@ -67,6 +68,7 @@ def generate_yaml(
                 state=r.get("state", (0, 0, 0)),
                 level=r.get("level", 1),
                 radius=r.get("radius", 0.2),
+                behaviour=behaviour
             )
         )
 
