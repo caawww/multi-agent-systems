@@ -18,21 +18,18 @@ def make_robot(state, level=1, radius=0.2):
 
 def create_apple(center=(2, 1), radius=0.25):
     cx, cy = center[0] + 0.5, center[1] + 0.5
-
-    return [
-        {
-            "shape": {"name": "circle", "radius": radius},
-            "state": [cx, cy, 0],
-            "color": "red",
-            "unobstructed": True
+    return {
+        "kinematics": {"name": "diff"},
+        "state": [cx, cy, 1],
+        "shape": {"name": "circle", "radius": radius},
+        "behavior": {"name": "apple"},
+        "color": "red",
+        "plot": {
+            "show_trajectory": False,
+            "show_goal": False
         },
-        {
-            "shape": {"name": "circle", "radius": radius * 0.28},
-            "state": [cx + radius * 0.5, cy + radius * 0.7, 0],
-            "color": "green",
-            "unobstructed": True
-        }
-    ]
+        "unobstructed": True
+    }
 
 
 def generate_yaml(
@@ -61,6 +58,9 @@ def generate_yaml(
             "unobstructed": True
         })
 
+    for a in apples:
+        data["robot"].append(create_apple(a))
+
     for r in robots:
         data["robot"].append(
             make_robot(
@@ -69,10 +69,6 @@ def generate_yaml(
                 radius=r.get("radius", 0.2),
             )
         )
-
-    for a in apples:
-        for item in create_apple(a):
-            data["obstacle"].append(item)
 
     with open(output_file, "w") as f:
         yaml.dump(data, f, sort_keys=False)

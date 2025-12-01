@@ -1,9 +1,7 @@
 import numpy as np
 from irsim.lib import register_behavior
 
-from config import GRID_X, GRID_Y, APPLES
-
-REMAINING_APPLES = [[apple[0] + 0.5, apple[1] + 0.5] for apple in APPLES]
+from config import GRID_X, GRID_Y
 
 ACTIONS = [
     (1, 0),
@@ -15,6 +13,7 @@ ACTIONS = [
 ]
 
 ROBOTS = {}
+REMAINING_APPLES = {}
 EPS_INIT = 0.2
 EPS_DECAY = 0.985
 
@@ -27,7 +26,7 @@ def _valid(nx, ny):
     return (
             0 <= nx < GRID_X
             and 0 <= ny < GRID_Y
-            and np.all([[nx, ny] != apple for apple in REMAINING_APPLES])
+            and np.all([[nx, ny] != key[1] for key in REMAINING_APPLES.values()])
     )
 
 
@@ -85,4 +84,15 @@ def train(ego_object, objects=None, **kw):
 
 @register_behavior('diff', 'test')
 def test(ego_object, objects=None, **kw):
+    return np.array([[0.0], [0.0]], dtype=float)
+
+
+@register_behavior('diff', 'apple')
+def apple(ego_object, objects=None, **kw):
+    if ego_object.state[0][0] < -5:
+        return np.array([[0.0], [0.0]], dtype=float)
+
+    if ego_object.name not in REMAINING_APPLES:
+        REMAINING_APPLES[ego_object.name] = [ego_object, _to_floats(ego_object.state)[:2]]
+
     return np.array([[0.0], [0.0]], dtype=float)
