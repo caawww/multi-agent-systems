@@ -9,6 +9,7 @@
 **/.vscode/
 **/_build/
 **/.generated/
+a3/grid.yaml
 
 *.mp4
 *.avi
