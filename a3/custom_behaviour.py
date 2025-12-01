@@ -30,6 +30,31 @@ def _valid(nx, ny):
     )
 
 
+def _contains_apple(x, y):
+    for key in REMAINING_APPLES:
+        if REMAINING_APPLES[key][1] == [x, y]:
+            return key
+
+    return None
+
+
+def _check_for_apple(x, y):
+    for a in ACTIONS[:4]:
+        apple = _contains_apple(x + a[0], y + a[1])
+        if apple is not None:
+            return apple
+
+    return None
+
+
+def _collect_apple(apple_name):
+    if apple_name in REMAINING_APPLES:
+        REMAINING_APPLES[apple_name][0].set_state([-10, -10, 1])
+        return True
+
+    return False
+
+
 def _valid_actions(x, y):
     return [i for i, (dx, dy) in enumerate(ACTIONS) if _valid(x + dx, y + dy)]
 
@@ -78,6 +103,9 @@ def train(ego_object, objects=None, **kw):
     robot.move(a)
 
     ego_object.set_state(robot.pose)
+
+    if a == 5:  # collect action
+        is_apple_collected = _collect_apple(_check_for_apple(*robot.pose[:2]))
 
     return np.array([[0.0], [0.0]], dtype=float)
 
