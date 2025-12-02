@@ -1,3 +1,7 @@
+import random
+
+from create_grid import generate_yaml
+
 GRID_X = 10
 GRID_Y = 10
 
@@ -10,15 +14,14 @@ ROBOTS = [
     # {"state": (4, 4, 0), "level": 20, "radius": 0.2},
 ]
 
-APPLES = [
-    [0, 4],
-    [1, 4],
-    [2, 4],
-    [3, 4],
-    [4, 4],
-    [5, 4],
-    [6, 4],
-    [7, 4],
-    [8, 4],
-    [9, 4]
-]
+APPLES = list(set((random.randrange(10), random.randrange(9) + 1) for _ in range(10)))
+
+
+def regenerate_yaml(behaviour="train"):
+    generate_yaml(
+        world_size=(GRID_X, GRID_Y),
+        robots=ROBOTS,
+        apples=APPLES,
+        behaviour=behaviour,
+        output_file="grid.yaml"
+    )
