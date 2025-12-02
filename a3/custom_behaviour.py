@@ -173,12 +173,27 @@ def _get_robot_for(ego_object):
     return ROBOTS[name]
 
 
+def _adjacent_robots(x, y):
+    robots_adj = []
+    for dx, dy in ACTIONS[:4]:
+        nx, ny = x + dx, y + dy
+        for robot in ROBOTS.values():
+            if robot.pose[:2] == [nx, ny]:
+                robots_adj.append(robot)
+    return robots_adj
+
+
 def _check_adjacent_apple(x, y):
-    for a in ACTIONS[:4]:
-        nx, ny = x + a[0], y + a[1]
+    for dx, dy in ACTIONS[:4]:
+        nx, ny = x + dx, y + dy
+
         for key, apple in REMAINING_APPLES.items():
             if apple.pose == [nx, ny]:
-                return key
+                # sum levels of adjacent robots to this apple
+                robots_adj = _adjacent_robots(*apple.pose)
+                total_level = sum(r.level for r in robots_adj)
+                if total_level >= apple.level:
+                    return key
 
     return None
 
