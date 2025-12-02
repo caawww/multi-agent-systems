@@ -95,7 +95,8 @@ def train(ego_object, objects=None, **kw):
     valid_actions = _valid_actions(*robot.pose[:2])
     action = robot.choose_action(valid_actions)
 
-    reward = STEP_PENALTY
+    reward = TIME_PENALTY if REMAINING_APPLES else 0
+    reward += STEP_PENALTY if action < 4 else 0
 
     if action == 5:  # collect apple
         apple_name = _check_adjacent_apple(*robot.pose[:2])
