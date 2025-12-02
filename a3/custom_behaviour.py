@@ -12,7 +12,7 @@ ACTIONS = [
     (0, 0)  # collect
 ]
 
-EPS_INIT = 0.4
+EPS_INIT = 0.2
 EPS_DECAY = 0.985
 ALPHA = 0.1
 GAMMA = 0.99
@@ -57,7 +57,9 @@ class Robot:
         self.Q_table = {}
 
     def get_state(self):
-        return self.pose[0], self.pose[1]
+        x, y = self.pose[0], self.pose[1]
+        dx, dy = _closest_apple_vector(x, y)
+        return x, y, dx, dy
 
     def choose_action(self, valid_actions):
         state = self.get_state()
@@ -122,6 +124,25 @@ def _valid_actions(x, y):
         valid.remove(5)
 
     return valid
+
+
+def _closest_apple_vector(x, y):
+    if not REMAINING_APPLES:
+        return 0, 0
+
+    # find apple with minimum manhattan distance
+    best_dx, best_dy = 0, 0
+    best_dist = float("inf")
+
+    for apple in REMAINING_APPLES.values():
+        ax, ay = apple.pose
+        dx, dy = ax - x, ay - y
+        dist = abs(dx) + abs(dy)
+        if dist < best_dist:
+            best_dist = dist
+            best_dx, best_dy = dx, dy
+
+    return best_dx, best_dy
 
 
 def _get_robot_for(ego_object):
