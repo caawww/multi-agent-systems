@@ -111,16 +111,35 @@ def _to_floats(pose):
     return [float(p) for p in pose]
 
 
+def _occupied_by_robot(x, y):
+    for r in ROBOTS.values():
+        if r.pose[0] == x and r.pose[1] == y:
+            return True
+
+    return False
+
+
 def _valid(nx, ny):
-    return 0 <= nx < GRID_X and 0 <= ny < GRID_Y and \
-        np.all([[nx, ny] != apple.pose for apple in REMAINING_APPLES.values()])
+    if not (0 <= nx < GRID_X and 0 <= ny < GRID_Y):
+        return False
+
+    for apple in REMAINING_APPLES.values():
+        if apple.pose == [nx, ny]:
+            return False
+
+    # cannot walk on other robots
+    if _occupied_by_robot(nx, ny):
+        return False
+
+    return True
 
 
 def _valid_actions(x, y):
-    valid = [i for i, (dx, dy) in enumerate(ACTIONS) if _valid(x + dx, y + dy)]
+    valid = [i for i, (dx, dy) in enumerate(ACTIONS[:4]) if _valid(x + dx, y + dy)]
+    valid.append(4)
 
-    if _check_adjacent_apple(x, y) is None:
-        valid.remove(5)
+    if _check_adjacent_apple(x, y):
+        valid.append(5)
 
     return valid
 
