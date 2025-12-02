@@ -20,7 +20,6 @@ MAX_STEPS = 100
 
 STEP_PENALTY = -0.5
 APPLE_REWARD = 500
-FALSE_COLLECT = -5
 
 ROBOTS = {}
 ROBOTS_REF = set()
@@ -190,9 +189,6 @@ def train(ego_object, objects=None, **kw):
             _collect_apple(apple_name)
             reward += APPLE_REWARD
 
-        else:
-            reward += FALSE_COLLECT
-
     robot.move(action, reward)
     next_state = robot.get_state()
     robot.update_q(state, action, reward, next_state)
@@ -232,9 +228,6 @@ def test(ego_object, objects=None, **kw):
         if apple_name:
             _collect_apple(apple_name)
             reward += APPLE_REWARD
-
-        else:
-            reward += FALSE_COLLECT
 
     else:
         robot.move(action, reward)
