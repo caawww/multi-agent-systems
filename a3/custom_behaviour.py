@@ -103,7 +103,7 @@ class Robot:
 
     def print_stats(self):
         print(
-            f'[train] {self.ego_object.name} steps:{self.steps:3}, reward:{self.overall_reward:6}, episodes:{self.episodes:3}, eps:{round(self.eps, 3):6}')
+            f'[train] {self.ego_object.name:9} steps:{self.steps:3}, reward:{self.overall_reward:7}, episodes:{self.episodes:3}, eps:{round(self.eps, 3):6}')
 
 
 def _to_floats(pose):
@@ -116,7 +116,12 @@ def _valid(nx, ny):
 
 
 def _valid_actions(x, y):
-    return [i for i, (dx, dy) in enumerate(ACTIONS) if _valid(x + dx, y + dy)]
+    valid = [i for i, (dx, dy) in enumerate(ACTIONS) if _valid(x + dx, y + dy)]
+
+    if _check_adjacent_apple(x, y) is None:
+        valid.remove(5)
+
+    return valid
 
 
 def _get_robot_for(ego_object):
@@ -193,6 +198,7 @@ def test(ego_object, objects=None, **kw):
 
     if state not in robot.Q_table:
         action = np.random.choice(valid_actions)
+
     else:
         q_values = robot.Q_table[state]
         best_actions = [a for a in valid_actions if q_values[a] == np.max(q_values[valid_actions])]
