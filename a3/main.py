@@ -2,8 +2,7 @@ import irsim
 
 from config import regenerate_yaml
 
-regenerate_yaml()
-
+regenerate_yaml('train')
 env = irsim.make('grid.yaml')
 env.load_behavior('custom_behaviour')
 
@@ -14,7 +13,6 @@ for _ in range(50 * 10_0):
 env.end()
 
 regenerate_yaml('test')
-
 env = irsim.make('grid.yaml')
 env.load_behavior('custom_behaviour')
 

@@ -150,7 +150,7 @@ def _closest_apple_vector(x, y):
 
     # find apple with minimum manhattan distance
     best_dx, best_dy = 0, 0
-    best_dist = float("inf")
+    best_dist = float('inf')
 
     for apple in REMAINING_APPLES.values():
         ax, ay = apple.pose
