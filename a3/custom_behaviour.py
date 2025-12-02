@@ -1,7 +1,7 @@
 import numpy as np
 from irsim.lib import register_behavior
 
-from config import GRID_X, GRID_Y
+from config import GRID_X, GRID_Y, MAX_STEPS
 
 ACTIONS = [
     (1, 0),  # right
@@ -16,7 +16,6 @@ EPS_INIT = 0.2
 EPS_DECAY = 0.985
 ALPHA = 0.1
 GAMMA = 0.99
-MAX_STEPS = 100
 
 STEP_PENALTY = -0.5
 APPLE_REWARD = 500
@@ -104,7 +103,7 @@ class Robot:
 
     def print_stats(self):
         print(
-            f'[train] {self.ego_object.name:9} steps:{self.steps:3}, reward:{self.overall_reward:7}, episodes:{self.episodes:3}, eps:{round(self.eps, 3):6}')
+            f'[train] {self.ego_object.name:9} steps:{self.steps:4}, reward:{self.overall_reward:7}, episodes:{self.episodes:3}, eps:{round(self.eps, 3):6}')
 
 
 def _to_floats(pose):
