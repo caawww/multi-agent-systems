@@ -30,10 +30,11 @@ REMAINING_APPLES_REF = set()
 # Apple class
 # -------------------------
 class Apple:
-    def __init__(self, ego_object):
+    def __init__(self, ego_object, level=1):
         self.ego_object = ego_object
         self.init_pose = [ego_object.state[0][0], ego_object.state[1][0]]
         self.pose = self.init_pose.copy()
+        self.level = level
 
     def reset(self):
         self.pose = self.init_pose.copy()
@@ -44,7 +45,7 @@ class Apple:
 # Robot class
 # -------------------------
 class Robot:
-    def __init__(self, ego_object, x, y, th):
+    def __init__(self, ego_object, x, y, th, level=1):
         self.ego_object = ego_object
         self.pose = [x, y, th]
         self.init_pose = [x, y, th]
@@ -53,6 +54,7 @@ class Robot:
         self.episodes = 0
         self.overall_reward = 0
         self.Q_table = {}
+        self.level = level
 
     def get_state(self):
         x, y = self.pose[0], self.pose[1]
