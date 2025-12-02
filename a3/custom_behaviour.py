@@ -219,8 +219,9 @@ def train(ego_object, objects=None, **kw):
         #     r.reset()
         robot.reset()
 
-        for a in REMAINING_APPLES_REF:
-            a.reset()
+        for apple_obj in REMAINING_APPLES_REF:
+            apple_obj.reset()
+            REMAINING_APPLES[apple_obj.ego_object.name] = apple_obj
 
     return np.array([[0.0], [0.0]], dtype=float)
 
