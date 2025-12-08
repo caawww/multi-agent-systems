@@ -11,7 +11,7 @@ for _ in range(EPOCHS * MAX_STEPS):
 
 env.end()
 
-regenerate_yaml('test')
+#regenerate_yaml('test')
 env = irsim.make('grid.yaml')
 env.load_behavior('custom_behaviour')
 

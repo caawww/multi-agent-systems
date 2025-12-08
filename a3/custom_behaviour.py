@@ -180,7 +180,6 @@ def apple(ego_object, objects=None, **kw):
 
         grid_x, grid_y = int(x - 0.5), int(y - 0.5)
 
-        # ✅ Pure Python lookup (engine-independent)
         level = APPLE_LEVELS.get((grid_x, grid_y), 1)
 
         print(f"Apple Level: {level}")

@@ -6,7 +6,23 @@ robot:
 - kinematics:
     name: diff
   state:
-  - 2.5
+  - 3.5
+  - 7.5
+  - 1
+  shape:
+    name: circle
+    radius: 0.315
+  behavior:
+    name: apple
+  color: red
+  plot:
+    show_trajectory: false
+    show_goal: false
+  unobstructed: true
+- kinematics:
+    name: diff
+  state:
+  - 1.5
   - 8.5
   - 1
   shape:
@@ -23,70 +39,6 @@ robot:
     name: diff
   state:
   - 4.5
-  - 9.5
-  - 1
-  shape:
-    name: circle
-    radius: 0.45
-  behavior:
-    name: apple
-  color: red
-  plot:
-    show_trajectory: false
-    show_goal: false
-  unobstructed: true
-- kinematics:
-    name: diff
-  state:
-  - 1.5
-  - 1.5
-  - 1
-  shape:
-    name: circle
-    radius: 0.315
-  behavior:
-    name: apple
-  color: red
-  plot:
-    show_trajectory: false
-    show_goal: false
-  unobstructed: true
-- kinematics:
-    name: diff
-  state:
-  - 0.5
-  - 3.5
-  - 1
-  shape:
-    name: circle
-    radius: 0.45
-  behavior:
-    name: apple
-  color: red
-  plot:
-    show_trajectory: false
-    show_goal: false
-  unobstructed: true
-- kinematics:
-    name: diff
-  state:
-  - 0.5
-  - 2.5
-  - 1
-  shape:
-    name: circle
-    radius: 0.18
-  behavior:
-    name: apple
-  color: red
-  plot:
-    show_trajectory: false
-    show_goal: false
-  unobstructed: true
-- kinematics:
-    name: diff
-  state:
-  - 5.5
   - 6.5
   - 1
   shape:
@@ -102,12 +54,44 @@ robot:
 - kinematics:
     name: diff
   state:
-  - 5.5
+  - 6.5
+  - 4.5
+  - 1
+  shape:
+    name: circle
+    radius: 0.315
+  behavior:
+    name: apple
+  color: red
+  plot:
+    show_trajectory: false
+    show_goal: false
+  unobstructed: true
+- kinematics:
+    name: diff
+  state:
+  - 2.5
   - 9.5
   - 1
   shape:
     name: circle
-    radius: 0.45
+    radius: 0.315
+  behavior:
+    name: apple
+  color: red
+  plot:
+    show_trajectory: false
+    show_goal: false
+  unobstructed: true
+- kinematics:
+    name: diff
+  state:
+  - 7.5
+  - 2.5
+  - 1
+  shape:
+    name: circle
+    radius: 0.315
   behavior:
     name: apple
   color: red
@@ -119,7 +103,23 @@ robot:
     name: diff
   state:
   - 3.5
-  - 2.5
+  - 6.5
+  - 1
+  shape:
+    name: circle
+    radius: 0.18
+  behavior:
+    name: apple
+  color: red
+  plot:
+    show_trajectory: false
+    show_goal: false
+  unobstructed: true
+- kinematics:
+    name: diff
+  state:
+  - 8.5
+  - 6.5
   - 1
   shape:
     name: circle
@@ -134,12 +134,12 @@ robot:
 - kinematics:
     name: diff
   state:
-  - 9.5
-  - 7.5
+  - 2.5
+  - 5.5
   - 1
   shape:
     name: circle
-    radius: 0.18
+    radius: 0.315
   behavior:
     name: apple
   color: red
@@ -150,12 +150,12 @@ robot:
 - kinematics:
     name: diff
   state:
-  - 9.5
   - 4.5
+  - 7.5
   - 1
   shape:
     name: circle
-    radius: 0.18
+    radius: 0.315
   behavior:
     name: apple
   color: red
@@ -174,7 +174,7 @@ robot:
     radius: 0.18
   level: 1
   behavior:
-    name: test
+    name: train
   plot:
     show_trajectory: false
     show_goal: false
@@ -190,7 +190,7 @@ robot:
     radius: 0.315
   level: 2
   behavior:
-    name: test
+    name: train
   plot:
     show_trajectory: false
     show_goal: false
@@ -206,7 +206,7 @@ robot:
     radius: 0.315
   level: 2
   behavior:
-    name: test
+    name: train
   plot:
     show_trajectory: false
     show_goal: false
