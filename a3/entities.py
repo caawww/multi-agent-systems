@@ -29,8 +29,8 @@ class Robot:
 
     def get_state(self):
         x, y = self.pose[0], self.pose[1]
-        dx, dy = _closest_apple_vector(x, y)
-        return x, y, dx, dy
+        dx, dy, apple_level = self._closest_apple_info(x, y)
+        return x, y, dx, dy, apple_level
 
     def choose_action(self, valid_actions):
         state = self.get_state()
@@ -74,25 +74,26 @@ class Robot:
         self.overall_reward = 0
         self.eps *= EPS_DECAY
 
+
+    def _closest_apple_info(self, x, y):
+        if not REMAINING_APPLES:
+            return 0, 0, 0
+
+        best_dx, best_dy = 0, 0
+        best_level = 0
+        best_dist = float('inf')
+
+        for apple in REMAINING_APPLES.values():
+            ax, ay = apple.pose
+            dx, dy = ax - x, ay - y
+            dist = abs(dx) + abs(dy)
+            if dist < best_dist:
+                best_dist = dist
+                best_dx, best_dy = dx, dy
+                best_level = apple.level
+
+        return best_dx, best_dy, best_level
+
     def print_stats(self):
         print(
             f'[train] {self.ego_object.name:9} steps:{self.steps:4}, reward:{self.overall_reward:7}, episodes:{self.episodes:3}, eps:{round(self.eps, 3):6}')
-
-
-def _closest_apple_vector(x, y):
-    if not REMAINING_APPLES:
-        return 0, 0
-
-    # find apple with minimum manhattan distance
-    best_dx, best_dy = 0, 0
-    best_dist = float('inf')
-
-    for apple in REMAINING_APPLES.values():
-        ax, ay = apple.pose
-        dx, dy = ax - x, ay - y
-        dist = abs(dx) + abs(dy)
-        if dist < best_dist:
-            best_dist = dist
-            best_dx, best_dy = dx, dy
-
-    return best_dx, best_dy

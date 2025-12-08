@@ -7,7 +7,7 @@ ROBOTS_REF = set()
 REMAINING_APPLES = dict()
 REMAINING_APPLES_REF = set()
 
-EPOCHS = 50
+EPOCHS = 300
 MAX_STEPS = 100
 
 TIME_PENALTY = -1
@@ -23,8 +23,8 @@ ACTIONS = [
     (0, 0)  # collect
 ]
 
-EPS_INIT = 0.2
-EPS_DECAY = 0.985
+EPS_INIT = 1.0
+EPS_DECAY = 0.99
 ALPHA = 0.1
 GAMMA = 0.99
 
