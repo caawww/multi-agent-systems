@@ -1,8 +1,8 @@
 import irsim
 
-from config import regenerate_yaml, MAX_STEPS, EPOCHS
+from config import create_yaml, MAX_STEPS, EPOCHS
 
-regenerate_yaml('train')
+create_yaml('train')
 env = irsim.make('grid.yaml')
 env.load_behavior('custom_behaviour')
 
@@ -12,7 +12,7 @@ for _ in range(EPOCHS * MAX_STEPS):
 
 env.end()
 
-regenerate_yaml('test')
+create_yaml('test')
 env = irsim.make('grid.yaml')
 env.load_behavior('custom_behaviour')
 
