@@ -2,8 +2,16 @@ import numpy as np
 from irsim.lib import register_behavior
 
 from config import ROBOTS, ROBOTS_REF, REMAINING_APPLES, REMAINING_APPLES_REF, MAX_STEPS, TIME_PENALTY, STEP_PENALTY, \
-    APPLE_REWARD, ACTIONS, GRID_X, GRID_Y
+    APPLE_REWARD, ACTIONS, GRID_X, GRID_Y, ROBOTS_POS, APPLES_POS
 from entities import Apple, Robot
+
+ROBOT_LEVELS = {
+    tuple(r['state'][:2]): r['level'] for r in ROBOTS_POS
+}
+
+APPLE_LEVELS = {
+    tuple(a['center']): a['level'] for a in APPLES_POS
+}
 
 
 def _to_floats(pose):
@@ -47,10 +55,19 @@ def _get_robot_for(ego_object):
     name = ego_object.name
     if name not in ROBOTS:
         pose = _to_floats(ego_object.state)
-        ROBOTS[name] = Robot(ego_object, pose[0], pose[1], pose[2])
+        x, y = pose[0], pose[1]
+        grid_x, grid_y = int(x - 0.5), int(y - 0.5)
+        level = ROBOT_LEVELS.get((grid_x, grid_y), 1)
+
+        print(f"REAL Robot Level (config-based): {level}")
+
+        ROBOTS[name] = Robot(
+            ego_object,
+            x, y, pose[2],
+            level=level
+        )
 
     return ROBOTS[name]
-
 
 def _adjacent_robots(x, y):
     robots_adj = []
@@ -158,8 +175,19 @@ def apple(ego_object, objects=None, **kw):
         return np.array([[0.0], [0.0]], dtype=float)
 
     if ego_object.name not in REMAINING_APPLES:
-        apple_obj = Apple(ego_object)
+        x = ego_object.state[0][0]
+        y = ego_object.state[1][0]
+
+        grid_x, grid_y = int(x - 0.5), int(y - 0.5)
+
+        # ✅ Pure Python lookup (engine-independent)
+        level = APPLE_LEVELS.get((grid_x, grid_y), 1)
+
+        print(f"Apple Level: {level}")
+
+        apple_obj = Apple(ego_object, level=level)
         REMAINING_APPLES[ego_object.name] = apple_obj
         REMAINING_APPLES_REF.add(apple_obj)
 
     return np.array([[0.0], [0.0]], dtype=float)
+

@@ -32,15 +32,21 @@ GRID_X = 10
 GRID_Y = 10
 
 ROBOTS_POS = [
-    {'state': (0, 0, 0), 'level': 10, 'radius': 0.2},
-    {'state': (4, 0, 0), 'level': 15, 'radius': 0.2},
-    {'state': (9, 0, 0), 'level': 15, 'radius': 0.2},
+    {'state': (0, 0, 0), 'level': 1},
+    {'state': (4, 0, 0), 'level': 2},
+    {'state': (9, 0, 0), 'level': 2},
     # {'state': (2, 2, 0), 'level': 20, 'radius': 0.2},
     # {'state': (3, 3, 0), 'level': 20, 'radius': 0.2},
     # {'state': (4, 4, 0), 'level': 20, 'radius': 0.2},
 ]
 
-APPLES_POS = list(set((random.randrange(10), random.randrange(9) + 1) for _ in range(10)))
+APPLES_POS = [
+    {
+        'center': (x, y),
+        'level': random.choice([1, 2, 3])
+    }
+    for (x, y) in set((random.randrange(10), random.randrange(9) + 1) for _ in range(10))
+]
 
 
 def regenerate_yaml(behaviour='train'):
