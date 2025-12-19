@@ -9,12 +9,12 @@ ROBOTS_REF = set()
 REMAINING_APPLES = dict()
 REMAINING_APPLES_REF = set()
 
-EPOCHS = 50
-MAX_STEPS = 100
+EPOCHS = 300
+MAX_STEPS = 150
 
-TIME_PENALTY = -1
-STEP_PENALTY = -1
-APPLE_REWARD = 1000
+TIME_PENALTY = -0.2
+STEP_PENALTY = -0.2
+APPLE_REWARD = 300
 
 ACTIONS = [
     (1, 0),  # right
@@ -25,21 +25,27 @@ ACTIONS = [
     (0, 0)  # collect
 ]
 
-EPS_INIT = 0.2
-EPS_DECAY = 0.985
-ALPHA = 0.1
-GAMMA = 0.99
+EPS_INIT = 1.0
+EPS_DECAY = 0.99
+ALPHA = 0.15
+GAMMA = 0.95
 
 ROBOTS_POS = [
-    {'state': (0, 0, 0), 'level': 10, 'radius': 0.2},
-    {'state': (4, 0, 0), 'level': 15, 'radius': 0.2},
-    {'state': (9, 0, 0), 'level': 15, 'radius': 0.2},
+    {'state': (0, 0, 0), 'level': 1},
+    {'state': (4, 0, 0), 'level': 2},
+    {'state': (9, 0, 0), 'level': 2},
     # {'state': (2, 2, 0), 'level': 20, 'radius': 0.2},
     # {'state': (3, 3, 0), 'level': 20, 'radius': 0.2},
     # {'state': (4, 4, 0), 'level': 20, 'radius': 0.2},
 ]
 
-APPLES_POS = list(set((random.randrange(10), random.randrange(9) + 1) for _ in range(10)))
+APPLES_POS = [
+    {
+        'center': (x, y),
+        'level': random.choice([1, 2, 3])
+    }
+    for (x, y) in set((random.randrange(10), random.randrange(9) + 1) for _ in range(10))
+]
 
 ROBOT_COUNT = random.randint(2, 5)
 APPLES_COUNT = random.randint(3, 10)

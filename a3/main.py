@@ -8,7 +8,6 @@ env.load_behavior('custom_behaviour')
 
 for _ in range(EPOCHS * MAX_STEPS):
     env.step()
-    # env.render(0.01)
 
 env.end()
 
