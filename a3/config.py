@@ -2,7 +2,7 @@ import random
 
 from create_grid import generate_yaml
 
-IS_RANDOMIZED = True
+IS_RANDOMIZED = False
 
 ROBOTS = dict()
 ROBOTS_REF = set()
@@ -32,8 +32,9 @@ GAMMA = 0.95
 
 ROBOTS_POS = [
     {'state': (0, 0, 0), 'level': 1},
-    {'state': (4, 0, 0), 'level': 2},
-    {'state': (9, 0, 0), 'level': 2},
+    {'state': (2, 0, 0), 'level': 2},
+    {'state': (4, 0, 0), 'level': 3},
+    {'state': (6, 0, 0), 'level': 3},
     # {'state': (2, 2, 0), 'level': 20, 'radius': 0.2},
     # {'state': (3, 3, 0), 'level': 20, 'radius': 0.2},
     # {'state': (4, 4, 0), 'level': 20, 'radius': 0.2},
@@ -41,7 +42,7 @@ ROBOTS_POS = [
 
 APPLES_POS = [
     {
-        'center': (x, y),
+        'state': (x, y),
         'level': random.choice([1, 2, 3])
     }
     for (x, y) in set((random.randrange(10), random.randrange(9) + 1) for _ in range(10))
@@ -51,8 +52,9 @@ ROBOT_COUNT = random.randint(2, 5)
 APPLES_COUNT = random.randint(3, 10)
 GRID_X = random.randint(5, 15) if IS_RANDOMIZED else 10
 GRID_Y = random.randint(5, 15) if IS_RANDOMIZED else 10
-MAX_LEVEL = random.randint(2, 5)
+MAX_LEVEL = random.randint(2, 4)
 
+# TODO - check same square placement
 RANDOM_ROBOTS_POS = list(
     {
         'state': (random.randrange(0, GRID_X), random.randrange(0, GRID_Y), 0),
@@ -62,12 +64,19 @@ RANDOM_ROBOTS_POS = list(
     for _ in range(ROBOT_COUNT)
 )
 
-RANDOM_APPLES_POS = list(
-    set(
-        (random.randrange(0, GRID_X), random.randrange(0, GRID_Y))
-        for _ in range(APPLES_COUNT)
-    )
-)
+RANDOM_APPLES_POS = []
+while len(RANDOM_APPLES_POS) < APPLES_COUNT:
+    x, y = random.randrange(0, GRID_X), random.randrange(0, GRID_Y)
+
+    for robot in RANDOM_ROBOTS_POS + RANDOM_APPLES_POS:
+        rx, ry = robot['state'][:2]
+        if rx == x and ry == y:
+            break
+    else:
+        RANDOM_APPLES_POS.append({
+            'state': (x, y),
+            'level': random.randint(1, MAX_LEVEL),
+        })
 
 
 def create_yaml(behaviour='train'):

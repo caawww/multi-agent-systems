@@ -2,15 +2,15 @@ import numpy as np
 from irsim.lib import register_behavior
 
 from config import ROBOTS, ROBOTS_REF, REMAINING_APPLES, REMAINING_APPLES_REF, MAX_STEPS, TIME_PENALTY, STEP_PENALTY, \
-    APPLE_REWARD, ACTIONS, GRID_X, GRID_Y, ROBOTS_POS, APPLES_POS
+    APPLE_REWARD, ACTIONS, GRID_X, GRID_Y, ROBOTS_POS, APPLES_POS, RANDOM_APPLES_POS, RANDOM_ROBOTS_POS, IS_RANDOMIZED
 from entities import Apple, Robot
 
 ROBOT_LEVELS = {
-    tuple(r['state'][:2]): r['level'] for r in ROBOTS_POS
+    tuple(r['state'][:2]): r['level'] for r in (RANDOM_ROBOTS_POS if IS_RANDOMIZED else ROBOTS_POS)
 }
 
 APPLE_LEVELS = {
-    tuple(a['center']): a['level'] for a in APPLES_POS
+    tuple(a['state']): a['level'] for a in (RANDOM_APPLES_POS if IS_RANDOMIZED else APPLES_POS)
 }
 
 

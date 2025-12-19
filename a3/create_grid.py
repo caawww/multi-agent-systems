@@ -1,6 +1,6 @@
 import yaml
 
-def radius_from_level(level, min_level=1, max_level=3,
+def radius_from_level(level, min_level=1, max_level=4,
                       min_radius=0.18, max_radius=0.45):
     level = max(min_level, min(max_level, level))
     if max_level == min_level:
@@ -72,7 +72,7 @@ def generate_yaml(
         })
 
     for a in apples:
-        center = a['center']
+        center = a['state']
         level = a['level']
         data['robot'].append(create_apple(center=center, level=level))
 
