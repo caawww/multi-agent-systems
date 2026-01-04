@@ -9,11 +9,14 @@ ROBOTS_REF = set()
 REMAINING_APPLES = dict()
 REMAINING_APPLES_REF = set()
 
-EPOCHS = 300
-MAX_STEPS = 150
+GRID_X=10
+GRID_Y=10
 
-TIME_PENALTY = -0.2
-STEP_PENALTY = -0.2
+EPOCHS = 300
+MAX_STEPS = 200
+
+TIME_PENALTY = -40
+STEP_PENALTY = -5
 APPLE_REWARD = 300
 
 ACTIONS = [
@@ -26,15 +29,18 @@ ACTIONS = [
 ]
 
 EPS_INIT = 1.0
-EPS_DECAY = 0.99
-ALPHA = 0.15
-GAMMA = 0.95
+EPS_DECAY = 0.995
+ALPHA = 0.2
+GAMMA = 0.99
 
 ROBOTS_POS = [
-    {'state': (0, 0, 0), 'level': 1},
-    {'state': (2, 0, 0), 'level': 2},
-    {'state': (4, 0, 0), 'level': 3},
-    {'state': (6, 0, 0), 'level': 3},
+    {'state': (5, 0, 0), 'level': 1},
+    {'state': (8, 0, 0), 'level': 1},
+    {'state': (2, 0, 0), 'level': 1},
+    {'state': (4, 0, 0), 'level': 2},
+    {'state': (7, 0, 0), 'level': 2},
+    {'state': (6, 0, 0), 'level': 2},
+   
     # {'state': (2, 2, 0), 'level': 20, 'radius': 0.2},
     # {'state': (3, 3, 0), 'level': 20, 'radius': 0.2},
     # {'state': (4, 4, 0), 'level': 20, 'radius': 0.2},
@@ -45,7 +51,11 @@ APPLES_POS = [
         'state': (x, y),
         'level': random.choice([1, 2, 3])
     }
-    for (x, y) in set((random.randrange(10), random.randrange(9) + 1) for _ in range(10))
+    # Constrain apples to spawn in the upper-left corner (e.g., top-left 25% of the grid)
+    for (x, y) in set(
+        (random.randrange(0, GRID_X // 2), random.randrange(GRID_Y // 2, GRID_Y))
+        for _ in range(10)
+    )
 ]
 
 ROBOT_COUNT = random.randint(2, 5)
@@ -64,6 +74,11 @@ RANDOM_ROBOTS_POS = list(
     for _ in range(ROBOT_COUNT)
 )
 
+# Ensure the grid size remains fixed
+GRID_X = 10
+GRID_Y = 10
+
+# Randomize apple positions every training session
 RANDOM_APPLES_POS = []
 while len(RANDOM_APPLES_POS) < APPLES_COUNT:
     x, y = random.randrange(0, GRID_X), random.randrange(0, GRID_Y)

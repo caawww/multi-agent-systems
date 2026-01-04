@@ -105,6 +105,7 @@ def _collect_apple(apple_name):
 
 @register_behavior('diff', 'train')
 def train(ego_object, objects=None, **kw):
+   
     robot = _get_robot_for(ego_object)
     ROBOTS_REF.add(robot)
     state = robot.get_state()
@@ -127,7 +128,7 @@ def train(ego_object, objects=None, **kw):
 
     ego_object.set_state(robot.pose)
 
-    if robot.steps >= MAX_STEPS:  # or len(REMAINING_APPLES) == 0
+    if robot.steps >= MAX_STEPS or not REMAINING_APPLES:  # or len(REMAINING_APPLES) == 0
         # for r in ROBOTS_REF:
         #     r.reset()
         robot.reset()
@@ -182,7 +183,7 @@ def apple(ego_object, objects=None, **kw):
 
         level = APPLE_LEVELS.get((grid_x, grid_y), 1)
 
-        print(f"Apple Level: {level}")
+        print(f"Apple {ego_object.name} initialized at ({grid_x}, {grid_y}) with level {level}")
 
         apple_obj = Apple(ego_object, level=level)
         REMAINING_APPLES[ego_object.name] = apple_obj

@@ -32,13 +32,15 @@ def create_apple(center=(2, 1), level=1):
 
     return {
         'kinematics': {'name': 'diff'},
-        'state': [cx, cy, 1],
+        'state': [cx, cy, 1.57],
         'shape': {'name': 'circle', 'radius': radius},
         'behavior': {'name': 'apple'},
         'color': 'red',
         'plot': {
             'show_trajectory': False,
-            'show_goal': False
+            'show_goal': False,
+            'show_direction': False,
+            'arrow_color': 'brown'
         },
         'unobstructed': True
     }
