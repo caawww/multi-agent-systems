@@ -1,5 +1,6 @@
 import yaml
 
+
 def radius_from_level(level, min_level=1, max_level=4,
                       min_radius=0.18, max_radius=0.45):
     level = max(min_level, min(max_level, level))
@@ -32,15 +33,13 @@ def create_apple(center=(2, 1), level=1):
 
     return {
         'kinematics': {'name': 'diff'},
-        'state': [cx, cy, 1.57],
+        'state': [cx, cy, 1],
         'shape': {'name': 'circle', 'radius': radius},
         'behavior': {'name': 'apple'},
         'color': 'red',
         'plot': {
             'show_trajectory': False,
-            'show_goal': False,
-            'show_direction': False,
-            'arrow_color': 'brown'
+            'show_goal': False
         },
         'unobstructed': True
     }

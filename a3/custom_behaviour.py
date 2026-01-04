@@ -69,6 +69,7 @@ def _get_robot_for(ego_object):
 
     return ROBOTS[name]
 
+
 def _adjacent_robots(x, y):
     robots_adj = []
     for dx, dy in ACTIONS[:4]:
@@ -105,7 +106,6 @@ def _collect_apple(apple_name):
 
 @register_behavior('diff', 'train')
 def train(ego_object, objects=None, **kw):
-   
     robot = _get_robot_for(ego_object)
     ROBOTS_REF.add(robot)
     state = robot.get_state()
@@ -128,7 +128,7 @@ def train(ego_object, objects=None, **kw):
 
     ego_object.set_state(robot.pose)
 
-    if robot.steps >= MAX_STEPS or not REMAINING_APPLES:  # or len(REMAINING_APPLES) == 0
+    if robot.steps >= MAX_STEPS:  # or len(REMAINING_APPLES) == 0
         # for r in ROBOTS_REF:
         #     r.reset()
         robot.reset()
@@ -183,11 +183,10 @@ def apple(ego_object, objects=None, **kw):
 
         level = APPLE_LEVELS.get((grid_x, grid_y), 1)
 
-        print(f"Apple {ego_object.name} initialized at ({grid_x}, {grid_y}) with level {level}")
+        print(f"Apple Level: {level}")
 
         apple_obj = Apple(ego_object, level=level)
         REMAINING_APPLES[ego_object.name] = apple_obj
         REMAINING_APPLES_REF.add(apple_obj)
 
     return np.array([[0.0], [0.0]], dtype=float)
-

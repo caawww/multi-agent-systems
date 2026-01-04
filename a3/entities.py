@@ -16,7 +16,6 @@ class Apple:
 
 
 class Robot:
-    Q_TABLES_BY_LEVEL = {}
     def __init__(self, ego_object, x, y, th, level=1):
         self.ego_object = ego_object
         self.pose = [x, y, th]
@@ -25,35 +24,13 @@ class Robot:
         self.steps = 0
         self.episodes = 0
         self.overall_reward = 0
-        self.all_apples_collected = False
-        
+        self.Q_table = {}
         self.level = level
-        if level not in Robot.Q_TABLES_BY_LEVEL:
-            Robot.Q_TABLES_BY_LEVEL[level] = {}
-        self.Q_table = Robot.Q_TABLES_BY_LEVEL[level]
-        
+
     def get_state(self):
         x, y = self.pose[0], self.pose[1]
-        #dx, dy, apple_level = self._closest_apple_info(x, y)
-        #if apple is forageble, return apple level, else 0
-        apple_level = self._get_apple_level(x, y)
-
-        return x, y, apple_level
-
-    def _get_apple_level(self, x, y):
-        if not REMAINING_APPLES:
-            return 0
-
-        for apple in REMAINING_APPLES.values():
-            ax, ay = apple.pose
-            dx = abs(ax - x)
-            dy = abs(ay - y)
-
-            # literally next to: up, down, left, right
-            if (dx == 1 and dy == 0) or (dx == 0 and dy == 1):
-                return apple.level
-
-        return 0
+        dx, dy, apple_level = self._closest_apple_info(x, y)
+        return dx, dy, apple_level
 
     def choose_action(self, valid_actions):
         state = self.get_state()
@@ -85,15 +62,6 @@ class Robot:
         self.steps += 1
         self.overall_reward += reward
 
-        # Check if all apples are collected
-        if not REMAINING_APPLES and not self.all_apples_collected:
-            self.all_apples_collected = True
-            print(f"[info] All apples collected by {self.ego_object.name} after {self.steps} steps.")
-
-        # Ensure no penalties are applied after all apples are collected
-        if self.all_apples_collected and reward < 0:
-            reward = 0
-
         return self.pose
 
     def reset(self):
@@ -105,7 +73,6 @@ class Robot:
         self.episodes += 1
         self.overall_reward = 0
         self.eps *= EPS_DECAY
-
 
     def _closest_apple_info(self, x, y):
         if not REMAINING_APPLES:
@@ -128,6 +95,4 @@ class Robot:
 
     def print_stats(self):
         print(
-            f'[train] {self.ego_object.name:9} steps:{self.steps:4}, reward:{self.overall_reward:7}, episodes:{self.episodes:3}, eps:{round(self.eps, 3):6}'
-        )
-       
+            f'[train] {self.ego_object.name:9} steps:{self.steps:4}, reward:{self.overall_reward:7}, episodes:{self.episodes:3}, eps:{round(self.eps, 3):6}')
